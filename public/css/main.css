@@ -1,14 +1,18 @@
 body {
-  background-image: url('../assets/img/2.jpg');
-  background-size: cover;
-  height: 100vh;
+    background-image: url('../assets/img/2.jpg');
+    background-size: cover;
+    height: 100vh;
 }
-
-img {
-  width: 2em;
-  height: 4em;
+.box-login {
+    border: 1px solid white;
+    background: white;
+    opacity: 0.8;
+    padding: 2em;
+    border-radius: 6px;
 }
-
+.btns a{
+    margin: 1em auto;
+}
 #map {
   height: 450px;
 }
