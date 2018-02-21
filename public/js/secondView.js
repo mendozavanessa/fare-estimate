@@ -1,3 +1,5 @@
+var userName = $('#nameUser');
+userName.text(localStorage.nameUser);
 var config = {
   apiKey: 'AIzaSyCnvceLHFJR5Q5Y_G89_bc_dJH-q0Hx8bs',
   authDomain: 'fare-estimate-tv.firebaseapp.com',

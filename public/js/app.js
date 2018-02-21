@@ -58,6 +58,7 @@ window.addEventListener('load', function() {
 
         // autocompletado de destino
         var destination = document.getElementById('destination-value');
+        destination.val(' ');
         var autocompleteDestination = new google.maps.places.Autocomplete(destination);
         autocompleteDestination.bindTo('bounds', map);
         directionsDisplay.setMap(map);
@@ -98,8 +99,8 @@ var config = {
   messagingSenderId: '25625867728'
 };
 firebase.initializeApp(config);
-var userName = $('#nameUser');
-$('#btn-google').on('click', function() {
+$('#btn-google').on('click', function(event) {
+  event.preventDefault();
   if (!firebase.auth().currentUser) {
     var provider = new firebase.auth.GoogleAuthProvider();
     provider.addScope('https://www.googleapis.com/auth/contacts.readonly');
@@ -108,7 +109,8 @@ $('#btn-google').on('click', function() {
       var token = result.credential.accessToken;
       // The signed-in user info.
       var user = result.user;
-      localStorage.userName = user;
+      localStorage.nameUser = user.displayName;
+      window.location.replace('../view/secondView.html');
       // ...
     }).catch(function(error) {
       var errorCode = error.code;
@@ -123,19 +125,6 @@ $('#btn-google').on('click', function() {
     firebase.auth().signOut();
   }
 });
-
-function InicializarFire() {
-  firebase.auth().onAuthStateChanged(function(user) {
-    if (user) {
-      alert(user);
-      userName.textContent = user.displayName;
-    }
-  });
-}
-window.onload = function() {
-  InicializarFire();
-};
-
 $('.register').on('click', function() {
   $('.box-register').show();
   $('.box-init').hide();
